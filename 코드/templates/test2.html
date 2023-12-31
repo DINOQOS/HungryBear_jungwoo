@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필입력</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            background: url("static/img/bg.png") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        
+        .image-container {
+            text-align: right;
+            position: relative;
+            right: -350px;
+        }
+  
+        .image-container img {
+         max-width: 100%;
+         max-height: 100%;
+         width: 600px;
+         height: 600px;
+        margin-bottom: -50px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px 110px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            left: 150px;
+        }
+
+        h1 {
+            font-size: 50px;
+            font-family: 'Bagel Fat One', cursive;   
+            color: #1c2775;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: bolder;
+            color: #060606;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #e3ea19;
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 30px;
+            font-family: 'Bagel Fat One', cursive;   
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0fa5f0;
+        }
+    </style>
+    <script>
+        function goToThirdPage() {
+            var name = document.getElementById("name").value;
+            var height = parseFloat(document.getElementById("height").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+            var age = parseInt(document.getElementById("age").value);
+            var gender = document.querySelector('input[name="gender"]:checked').value;
+
+            localStorage.setItem("name", nickname);
+            localStorage.setItem("height", height);
+            localStorage.setItem("weight", weight);
+            localStorage.setItem("age", age);
+            localStorage.setItem("gender", gender);
+
+            window.location.href = "test3.html";
+        }
+    </script>
+</head>
+<body>
+
+    <form action="{{ url_for('test2') }}" method="POST">
+        <h1>프로필 설정</h1>
+
+        <label for="name">닉네임</label>
+        <input type="text" id="name" name="name" required>
+    
+        <label for="height">키 (cm)</label>
+        <input type="number" id="height" name="height" required>
+    
+        <label for="weight">몸무게 (kg)</label>
+        <input type="number" id="weight" name="weight" required>
+    
+        <label for="age">나이</label>
+        <input type="number" id="age" name="age" required>
+    
+        <label for="gender">성별</label>
+        <select id="gender" name="gender" required>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+        </select>
+
+        <button type="submit"><a>저장</a></button>
+
+    </form>
+</body>
+
+<div class="image-container">
+     <img src="static/img/teddybear.png" alt="헝그리베어 이미지">
+</div>
+
+</html>

@@ -1,0 +1,68 @@
+<head>
+    <title>시작페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+</head>
+
+
+
+<style>
+    html, body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/static/img/bg.png"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+
+    .image-container {
+        text-align: center;
+        position: relative;
+    }
+  
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+      width: 400px;
+      height: 400px;
+      margin-bottom: -50px;
+    }
+
+    h1 {
+        margin-top: 0;
+        margin-bottom: 60px;
+        font-size: 100px;
+        font-family: 'Bagel Fat One', cursive;   
+        color: rgb(184, 213, 190);
+        text-shadow: 8px 8px 0px rgb(100, 93, 93);
+    }
+
+    .start-button {
+    background-color: #e3ea19;
+    color: #ffffff;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 36px;
+    font-family: 'Bagel Fat One', cursive;   
+    cursor: pointer;
+    }
+
+  .start-button:hover {
+    background-color: #0036cc;
+    }
+    
+  </style>
+  
+  <div class="image-container">
+    <img src="/static/img/teddybear.png" alt="헝그리베어 이미지">
+    <h1>헝그리베어</h1>
+    <a href="{{ url_for('test2') }}" class="start-button">시작하기</a>
+  </div>
+  

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세 번째 페이지</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gaegu&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("static/img/bg.png") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .left-section {
+            width: 0px;
+            padding: 0px;
+        }
+
+        .bmi-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 450px;
+            padding: 0px 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            top: -50px;
+            right: 320px;
+            font-size: 18px;
+            font-weight: bolder;
+        }
+
+        h2 {
+            font-size: 50px;
+            font-family: 'Bagel Fat One', cursive;   
+            color: #1c2775;
+        }
+
+        .upload-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 450px;
+            height: 200px;
+            padding: 5px 15px 100px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            top: 0px;
+            right: 320px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-box h3 {
+            margin-bottom: 10px;
+        }
+
+        #preview-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        #preview-message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #999;
+        }
+
+        .remove-button {
+            background-color: #729dd9;
+            color: #fff;
+            width: 450px;
+            height: 50px;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            position: relative;
+            top: 0px;
+            right: 300px;
+            font-size: 16px;
+            font-weight: bolder;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .remove-button:hover {
+            background-color: #ff0000;
+        }
+
+
+
+        .right-section {
+            width: 0px;
+            padding: 10px;
+        }
+
+        .message-bubble1 {
+            background-color: rgba(255, 255, 255, 1);
+            width: 280px;
+            height: 160px;
+            padding: 10px 20px 30px;
+            border-radius: 60px;
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Gaegu', cursive;
+            font-weight: bolder;
+            position: relative;
+            top: -110px;
+            right: -480px;
+            margin-top: 0px;
+        }
+        .message-bubble2 {
+            background-color: rgba(255, 255, 255, 1);
+            width: 240px;
+            height: 160px;
+            padding: 20px;
+            border-radius: 60px;
+            text-align: center;
+            font-size: 32px;
+            font-family: 'Gaegu', cursive;
+            position: relative;
+            top: 20px;
+            right: -780px;
+            margin-top: 20px;
+        }
+
+        .image-container1 {
+            text-align: right;
+            position: relative;
+            right: -300px;
+            top: 10px;
+        }
+  
+        .image-container1 img {
+            max-width: 100%;
+            max-height: 100%;
+            width: 400px;
+            height: 400px;
+            margin-bottom: -50px;
+        }
+
+        .image-container2 {
+            text-align: right;
+            position: relative;
+            right: -350px;
+        }
+  
+        .image-container2 img {
+         max-width: 100%;
+         max-height: 100%;
+         width: 300px;
+         height: 300px;
+        margin-bottom: -50px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <script>
+        function showLoading() {
+            document.getElementById("loading-message").style.display = "block";
+        }
+
+        function hideLoading() {
+            document.getElementById("loading-message").style.display = "none";
+        }
+
+        // Function to handle image preview
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById("preview-image");
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.setAttribute("src", e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+                document.getElementById("preview-message").style.display = "none";
+            } else {
+                preview.setAttribute("src", "");
+                document.getElementById("preview-message").style.display = "block";
+            }
+        }
+    </script>
+    <div class="left-section">
+        <div class="bmi-box">
+            <h2>BMI 결과</h2>
+            <div id="bmi-result"> bmi기준!</div>
+            <div id="bmi-result"> 저체중(18~23) 정상체중(18~23) 과체중(23~25)</div>
+            <div id="bmi-result"> 경증비만(25~30) 중등도비만(30~35) 고도비만(35~)</div>
+            <div id="bmi-result"> ------------------------------</div>
+            <div id="bmi-result"> {{name}}님! 당신의 BMI는 {{bmi}}입니다.</div>
+            <div id="bmr-result"> 기초대사량은 {{bmr}} kcal/day입니다.</div>       
+        </div>
+        <div class="upload-box">
+            <h3>이미지</h3>
+            <p id="preview-message">사진을 입력하세요</p>
+            <form action="/test3" method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
+                <input type="file" name="image" onchange="previewImage(event)">
+                <input type="submit" value="업로드">
+            </form>
+            <img id="preview-image" src="" alt="미리보기 이미지">
+        </div>
+        
+        <div class="group-button">
+            <button class="remove-button" id="save-button">먹음</button>
+            <button class="remove-button">안먹음</button>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="message-bubble1">
+            {% if predicted_food %}
+              <p>FOOD: {{ predicted_food }}</p>
+              {% if calories %}
+                <p>Calories: {{ calories }}</p>
+              {% endif %}
+            {% else %}
+              <p id="loading-message" style="display: none;">당신이 먹을 음식 칼로리는?! (분석중...)</p>
+            {% endif %}
+          </div>
+          <div class="message-bubble2">
+            {% if bmi < 18 %}
+                <p>{{ bmi_messages['underweight'] }}</p>
+            {% elif bmi >= 18 and bmi < 23 %}
+                <p>{{ bmi_messages['normal'] }}</p>
+            {% elif bmi >= 23 and bmi < 25 %}
+                <p>{{ bmi_messages['overweight'] }}</p>
+            {% elif bmi >= 25 and bmi < 30 %}
+                <p>{{ bmi_messages['mild_obesity'] }}</p>
+            {% elif bmi >= 30 and bmi < 35 %}
+                <p>{{ bmi_messages['moderate_obesity'] }}</p>
+            {% else %}
+                <p>{{ bmi_messages['severe_obesity'] }}</p>
+            {% endif %}
+        </div>  
+    </div>
+    <div class="image-container1">
+        <img src="static/img/teddybear.png" alt="베어 이미지1">
+   </div>
+   <div class="image-container2">
+        <img src="static/img/bear1.png" alt="베어 이미지2">
+    </div>
+</body>
+</html>
